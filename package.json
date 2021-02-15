@@ -1,0 +1,11 @@
+{
+  "name": "clean-node-api",
+  "version": "1.0.0",
+  "description": "Uma api construida com NodeJS, utilizando a metodologia do Clean Architecture e TDD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
