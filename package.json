@@ -4,7 +4,8 @@
   "description": "Uma api construida com NodeJS, utilizando a metodologia do Clean Architecture e TDD",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests"
+    "test": "jest --watchAll --passWithNoTests",
+    "test:staged":"jest --passWithNoTests"
   },
   "standard": {
     "env": [
