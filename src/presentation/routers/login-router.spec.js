@@ -2,9 +2,11 @@ const InternalServerError = require('./Errors/internal-server-error')
 const MissingParamError = require('./Errors/missing-param-error')
 const LoginRouter = require('./login-router')
 
+const makeSut = () => new LoginRouter()
+
 describe('login-router', () => {
   test('Should return 400 if no email is provided', async () => {
-    const sut = new LoginRouter()
+    const sut = makeSut()
     const httpRequest = {
       body:
       {
@@ -19,7 +21,7 @@ describe('login-router', () => {
   })
 
   test('Should return 400 if no password is provided', async () => {
-    const sut = new LoginRouter()
+    const sut = makeSut()
     const httpRequest = {
       body:
       {
@@ -34,14 +36,14 @@ describe('login-router', () => {
   })
 
   test('should return 500 if no httpRequest is provided', async () => {
-    const sut = new LoginRouter()
+    const sut = makeSut()
 
     const httpResponse = await sut.route()
     expect(httpResponse.statusCode).toBe(500)
   })
 
   test('should return 500 if httpRequest has no body', async () => {
-    const sut = new LoginRouter()
+    const sut = makeSut()
 
     const httpRequest = {}
     const httpResponse = await sut.route(httpRequest)
