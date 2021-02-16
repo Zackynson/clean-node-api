@@ -107,8 +107,26 @@ describe('login-router', () => {
     const httpRequest = {
       body:
       {
-        email: 'invalid@email.com',
-        password: 'invalid_password'
+        email: 'any_email@email.com',
+        password: 'any_password'
+      }
+    }
+
+    const httpResponse = await sut.route(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new InternalServerError())
+  })
+
+  test('should return 500 when AuthUseCase has no auth method', async () => {
+    const authUseCase = {}
+    const sut = new LoginRouter(authUseCase)
+
+    const httpRequest = {
+      body:
+      {
+        email: 'any_email@email.com',
+        password: 'any_password'
       }
     }
 
