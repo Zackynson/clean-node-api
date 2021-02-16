@@ -1,5 +1,6 @@
 const InternalServerError = require('./Errors/internal-server-error')
 const MissingParamError = require('./Errors/missing-param-error')
+const UnauthorizedError = require('./Errors/unauthorized-error')
 const LoginRouter = require('./login-router')
 
 const makeSut = () => {
@@ -81,5 +82,22 @@ describe('login-router', () => {
 
     expect(authUseCaseSpy.email).toBe(httpRequest.body.email)
     expect(authUseCaseSpy.password).toBe(httpRequest.body.password)
+  })
+
+  test('should return 401 when providing invalid credentials', async () => {
+    const { sut } = makeSut()
+
+    const httpRequest = {
+      body:
+      {
+        email: 'invalid@email.com',
+        password: 'invalid_password'
+      }
+    }
+
+    const httpResponse = await sut.route(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(401)
+    expect(httpResponse.body).toEqual(new UnauthorizedError())
   })
 })
