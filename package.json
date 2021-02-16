@@ -4,7 +4,12 @@
   "description": "Uma api construida com NodeJS, utilizando a metodologia do Clean Architecture e TDD",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --passWithNoTests"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +18,8 @@
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
     "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "@types/jest": "^26.0.20"
   }
 }
